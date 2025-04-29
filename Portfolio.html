@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hipotech - Technology Solutions</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#10b981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        input:focus, button:focus {
+            outline: none;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="bg-white">
+   <!-- Header -->
+   <header class="w-full bg-white shadow-sm">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center">
+            <h1 class="text-2xl font-['Pacifico'] text-primary">Hipotech</h1>
+            <nav class="hidden md:flex ml-12">
+                <a href="Home.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Home</a>
+                <a href="Our services.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Services</a>
+                <a href="About us.html" class="text-gray-800 hover:text-primary mx-4 font-medium">About</a>
+                <a href="Portfolio.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Portfolio</a>
+                <a href="Blog.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Blog</a>
+                <a href="Contact.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Contact</a>
+            </nav>
+        </div>
+       <div class="flex items-center">
+<!-- Get a Quote Button -->
+<a href="Get a Quote.html" class="inline-block">
+<button class="bg-primary text-white px-6 py-2 rounded-button font-medium hover:bg-blue-600 transition whitespace-nowrap">
+  Get a Quote
+</button>
+</a>
+
+<!-- Mobile Menu Toggle (Hidden on Desktop) -->
+<button 
+id="mobile-menu-button"
+class="w-10 h-10 flex items-center justify-center md:hidden ml-4 focus:outline-none"
+aria-label="Toggle menu"
+>
+<i class="ri-menu-line ri-lg text-gray-700"></i>
+</button>
+</div>
+        </div>
+    </div>
+</header>
+    <!-- Portfolio Section -->
+    <section     class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Recent Projects</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Take a look at some of our recent work that showcases our expertise and capabilities.</p>
+            </div>
+            
+            <div class="flex justify-center mb-10">
+                <div class="inline-flex bg-gray-100 p-1 rounded-full">
+                    <button class="px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap">All Projects</button>
+                    <button class="px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap">Web Development</button>
+                    <button class="px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap">Mobile Apps</button>
+                    <button class="px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap">Design</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20modern%20e-commerce%20website%20interface%20displayed%20on%20a%20computer%20screen%2C%20professional%20web%20design%20with%20clean%20layout%2C%20shopping%20cart%20functionality%2C%20product%20grid%20display%2C%20blue%20color%20scheme%2C%20high-quality%20UI%2FUX%20design%20screenshot&width=600&height=400&seq=project1&orientation=landscape" alt="E-commerce Platform" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-primary bg-blue-50 px-3 py-1 rounded-full">Web Development</span>
+                        <h3 class="text-xl font-semibold mt-4 mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">A complete e-commerce solution with inventory management, payment processing, and customer analytics.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            View Project
+                            <div class="w-5 h-5 flex items-center justify-center ml-2">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20mobile%20app%20interface%20displayed%20on%20smartphone%2C%20financial%20management%20application%20with%20dashboard%2C%20transaction%20history%2C%20budget%20tracking%20features%2C%20clean%20modern%20design%20with%20blue%20accent%20colors%2C%20professional%20UI%2FUX%20mobile%20design&width=600&height=400&seq=project2&orientation=landscape" alt="Financial App" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-primary bg-blue-50 px-3 py-1 rounded-full">Mobile Apps</span>
+                        <h3 class="text-xl font-semibold mt-4 mb-2">Financial Management App</h3>
+                        <p class="text-gray-600 mb-4">A comprehensive mobile application for personal and business financial management with advanced analytics.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            View Project
+                            <div class="w-5 h-5 flex items-center justify-center ml-2">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20corporate%20brand%20identity%20design%20with%20logo%2C%20business%20cards%2C%20letterhead%2C%20and%20brand%20guidelines%20document%2C%20professional%20graphic%20design%20work%20with%20blue%20color%20scheme%2C%20modern%20minimalist%20branding%20elements%2C%20high-quality%20print%20design&width=600&height=400&seq=project3&orientation=landscape" alt="Brand Identity" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-medium text-primary bg-blue-50 px-3 py-1 rounded-full">Design</span>
+                        <h3 class="text-xl font-semibold mt-4 mb-2">Corporate Brand Identity</h3>
+                        <p class="text-gray-600 mb-4">Complete brand identity design including logo, style guide, marketing materials, and digital assets.</p>
+                        <a href="#" class="text-primary font-medium flex items-center">
+                            View Project
+                            <div class="w-5 h-5 flex items-center justify-center ml-2">
+                                <i class="ri-arrow-right-line"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-white text-primary border border-primary px-8 py-3 !rounded-button font-medium hover:bg-gray-50 transition whitespace-nowrap">View All Projects</button>
+            </div>
+        </div>
+    </section>
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white pt-16 pb-8">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <!-- Company Info -->
+                    <div>
+                        <h1 class="text-2xl font-['Pacifico'] text-white mb-6">logo</h1>
+                        <p class="text-gray-400 mb-6">Providing innovative technology solutions to help businesses thrive in the digital world.</p>
+                        <div class="flex">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                                <i class="ri-linkedin-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                                <i class="ri-facebook-fill"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                                <i class="ri-instagram-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Services</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Our Services</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Graphic Design</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Web Development</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Mobile App Development</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Data Analytics</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Cybersecurity</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Cloud Solutions</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-6">Contact Us</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                <span class="text-gray-400">1234 Tech Avenue, Suite 500<br>San Francisco, CA 94107</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3">
+                                    <i class="ri-phone-line"></i>
+                                </div>
+                                <span class="text-gray-400">+1 (415) 555-1234</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3">
+                                    <i class="ri-mail-line"></i>
+                                </div>
+                                <span class="text-gray-400">info@hipotech.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2025 Hipotech. All rights reserved.</p>
+                    <div class="flex items-center">
+                        <a href="#" class="text-gray-400 hover:text-white transition mr-6">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition mr-6">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Mobile menu toggle functionality could be added here
+            });
+        </script>
+    </body>
+    </html>
