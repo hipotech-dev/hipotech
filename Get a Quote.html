@@ -37,6 +37,27 @@
             width: 0%;
             transition: width 0.3s ease;
         }
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #3b82f6;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .submit-message {
+            display: none;
+            color: #3b82f6;
+            font-weight: 500;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -227,9 +248,13 @@
                     
                     <!-- Submit Button -->
                     <div class="text-center">
-                        <button type="submit" class="bg-primary text-white px-10 py-4 rounded-button font-medium hover:bg-blue-600 transition text-lg">
+                        <button type="submit" id="submit-btn" class="bg-primary text-white px-10 py-4 rounded-button font-medium hover:bg-blue-600 transition text-lg">
                             Get My Free Quote
                         </button>
+                        <div id="submit-message" class="submit-message">
+                            <div class="loader"></div>
+                            <span>Submitting your request...</span>
+                        </div>
                         <p class="text-sm text-gray-500 mt-3">We'll respond within 24 hours</p>
                     </div>
                 </form>
@@ -333,6 +358,8 @@
             const fileSize = document.getElementById('file-size');
             const progressBarFill = document.getElementById('progress-bar-fill');
             const fileError = document.getElementById('file-error');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitMessage = document.getElementById('submit-message');
             
             // File upload handling
             fileUpload.addEventListener('change', function(e) {
@@ -384,24 +411,42 @@
             
             // Form submission handler
             document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitMessage.style.display = 'block';
+                
                 // Validate file size again before submission
                 if (fileUpload.files.length > 0 && fileUpload.files[0].size > MAX_FILE_SIZE) {
-                    e.preventDefault();
                     fileError.textContent = 'File size exceeds 1MB limit';
                     fileError.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitMessage.style.display = 'none';
                     return;
                 }
                 
                 const formData = new FormData(this);
+                
                 fetch(this.action, {
                     method: 'POST',
                     body: formData
                 }).then(response => {
+                    submitBtn.disabled = false;
+                    submitMessage.style.display = 'none';
+                    
                     if(response.ok) {
                         window.location.href = this.querySelector('[name="_next"]').value;
+                    } else {
+                        // Show error message if submission fails
+                        submitMessage.innerHTML = '<span class="text-red-600">Submission failed. Please try again.</span>';
+                        submitMessage.style.display = 'block';
                     }
+                }).catch(error => {
+                    submitBtn.disabled = false;
+                    submitMessage.innerHTML = '<span class="text-red-600">Network error. Please check your connection.</span>';
+                    submitMessage.style.display = 'block';
                 });
-                e.preventDefault();
             });
         });
     </script>
