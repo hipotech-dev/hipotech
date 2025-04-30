@@ -16,6 +16,7 @@
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            scrollbar-gutter: stable;
         }
         input:focus, button:focus {
             outline: none;
@@ -42,6 +43,18 @@
             opacity: 1;
             visibility: visible;
         }
+        #mobile-menu-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+}
+#mobile-menu-container.hidden {
+    display: none;
+}
     </style>
 </head>
 <body class="bg-white">
@@ -821,23 +834,30 @@
         const mobileMenu = document.getElementById('mobile-menu');
 
         function openMenu() {
-            mobileMenuContainer.classList.remove('hidden');
-            setTimeout(() => {
-                mobileMenuOverlay.classList.add('open');
-                mobileMenu.classList.add('open');
-            }, 10);
-            document.body.style.overflow = 'hidden';
-        }
+    mobileMenuContainer.classList.remove('hidden');
+    // Get the scrollbar width first
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    // Apply padding to body to prevent shifting
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+        mobileMenuOverlay.classList.add('open');
+        mobileMenu.classList.add('open');
+    }, 10);
+}
 
-        function closeMenu() {
-            mobileMenuOverlay.classList.remove('open');
-            mobileMenu.classList.remove('open');
-            setTimeout(() => {
-                mobileMenuContainer.classList.add('hidden');
-            }, 300);
-            document.body.style.overflow = '';
-        }
-
+function closeMenu() {
+    mobileMenuOverlay.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    
+    setTimeout(() => {
+        mobileMenuContainer.classList.add('hidden');
+        // Remove the padding and restore scrolling
+        document.body.style.paddingRight = '';
+        document.body.style.overflow = '';
+    }, 300);
+}
         mobileMenuButton.addEventListener('click', openMenu);
         mobileMenuClose.addEventListener('click', closeMenu);
         mobileMenuOverlay.addEventListener('click', closeMenu);
