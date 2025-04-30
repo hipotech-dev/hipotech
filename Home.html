@@ -15,6 +15,7 @@
         :where([class^="ri-"])::before { content: "\f3c2"; }
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
         input:focus, button:focus {
             outline: none;
@@ -24,11 +25,28 @@
             -webkit-appearance: none;
             margin: 0;
         }
+        /* Mobile menu styles */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body class="bg-white">
     <!-- Header -->
-    <header class="w-full bg-white shadow-sm">
+    <header class="w-full bg-white shadow-sm fixed top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center">
                 <h1 class="text-2xl font-['Pacifico'] text-primary">Hipotech</h1>
@@ -41,26 +59,58 @@
                     <a href="Contact.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Contact</a>
                 </nav>
             </div>
-           <div class="flex items-center">
-  <!-- Get a Quote Button -->
-  <a href="Get a Quote.html" class="inline-block">
-    <button class="bg-primary text-white px-6 py-2 rounded-button font-medium hover:bg-blue-600 transition whitespace-nowrap">
-      Get a Quote
-    </button>
-  </a>
-  
-  <!-- Mobile Menu Toggle (Hidden on Desktop) -->
-  <button 
-    id="mobile-menu-button"
-    class="w-10 h-10 flex items-center justify-center md:hidden ml-4 focus:outline-none"
-    aria-label="Toggle menu"
-  >
-    <i class="ri-menu-line ri-lg text-gray-700"></i>
-  </button>
-</div>
+            <div class="flex items-center">
+                <!-- Get a Quote Button -->
+                <a href="Get a Quote.html" class="inline-block">
+                    <button class="bg-primary text-white px-6 py-2 rounded-button font-medium hover:bg-blue-600 transition whitespace-nowrap">
+                        Get a Quote
+                    </button>
+                </a>
+                
+                <!-- Mobile Menu Toggle (Hidden on Desktop) -->
+                <button 
+                    id="mobile-menu-button"
+                    class="w-10 h-10 flex items-center justify-center md:hidden ml-4 focus:outline-none"
+                    aria-label="Toggle menu"
+                >
+                    <i class="ri-menu-line ri-lg text-gray-700"></i>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 z-50 hidden md:hidden" id="mobile-menu-container">
+        <!-- Overlay -->
+        <div id="mobile-menu-overlay" class="overlay fixed inset-0 bg-black bg-opacity-50"></div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h1 class="text-2xl font-['Pacifico'] text-primary">Hipotech</h1>
+                <button id="mobile-menu-close" class="w-10 h-10 flex items-center justify-center">
+                    <i class="ri-close-line ri-lg text-gray-700"></i>
+                </button>
+            </div>
+            <nav class="p-6">
+                <ul class="space-y-4">
+                    <li><a href="Home.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Home</a></li>
+                    <li><a href="Our services.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Services</a></li>
+                    <li><a href="About us.html" class="block py-3 text-gray-800 hover:text-primary font-medium">About</a></li>
+                    <li><a href="Portfolio.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Portfolio</a></li>
+                    <li><a href="Blog.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Blog</a></li>
+                    <li><a href="Contact.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Contact</a></li>
+                    <li class="pt-4 mt-4 border-t">
+                        <a href="Get a Quote.html" class="inline-block w-full">
+                            <button class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-blue-600 transition w-full text-center">
+                                Get a Quote
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="relative w-full bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=A%20modern%20technology%20office%20environment%20with%20clean%20workspace%2C%20blue%20accent%20lighting%2C%20and%20a%20gradient%20from%20white%20on%20the%20left%20to%20tech-themed%20visuals%20on%20the%20right.%20The%20left%20side%20has%20ample%20white%20space%20for%20text%20overlay.%20Professional%20atmosphere%20with%20subtle%20tech%20elements%20like%20circuit%20patterns.%20High-quality%20professional%20photography%20style.&width=1920&height=800&seq=hero1&orientation=landscape');">
