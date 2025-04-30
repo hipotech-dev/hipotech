@@ -813,9 +813,40 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle functionality could be added here
+           document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileMenuContainer = document.getElementById('mobile-menu-container');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function openMenu() {
+            mobileMenuContainer.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenuOverlay.classList.add('open');
+                mobileMenu.classList.add('open');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenuOverlay.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            setTimeout(() => {
+                mobileMenuContainer.classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuButton.addEventListener('click', openMenu);
+        mobileMenuClose.addEventListener('click', closeMenu);
+        mobileMenuOverlay.addEventListener('click', closeMenu);
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
+    });
     </script>
 </body>
 </html>
