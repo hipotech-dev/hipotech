@@ -45,9 +45,12 @@
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            scrollbar-gutter: stable;
             transition: background-color 0.3s ease;
         }
         html {
+            overflow-x: hidden;
+            width: 100%;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         input:focus, button:focus {
@@ -82,12 +85,51 @@
         .service-card:hover {
             transform: translateY(-5px);
         }
+        /* Container constraints */
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 640px) {
+            .container {
+                max-width: 640px;
+            }
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1024px;
+            }
+        }
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1280px;
+            }
+        }
+        @media (min-width: 1536px) {
+            .container {
+                max-width: 1536px;
+            }
+        }
+        /* Ensure media doesn't overflow */
+        img, iframe, video, embed {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-gray-900">
     <!-- Header -->
     <header class="w-full bg-white dark:bg-gray-800 shadow-sm fixed top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="container px-6 py-4 flex items-center justify-between">
             <div class="flex items-center">
                 <h1 class="text-2xl font-['Pacifico'] text-primary dark:text-blue-400">Hipotech</h1>
                 <nav class="hidden md:flex ml-12">
@@ -156,7 +198,7 @@
 
     <!-- Services Section -->
     <section class="py-20 bg-gray-50 dark:bg-gray-800 mt-16">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">We offer comprehensive technology solutions tailored to meet your business needs and drive growth.</p>
@@ -228,7 +270,7 @@
 
     <!-- Newsletter Section -->
     <section class="py-16 bg-primary dark:bg-blue-800">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-8 md:mb-0">
                     <h2 class="text-2xl font-bold text-white mb-2">Subscribe to Our Newsletter</h2>
@@ -248,7 +290,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <!-- Company Info -->
                 <div>
@@ -344,22 +386,27 @@
 
             function openMenu() {
                 mobileMenuContainer.classList.remove('hidden');
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                document.body.style.paddingRight = `${scrollbarWidth}px`;
+                document.body.style.overflow = 'hidden';
+                
                 setTimeout(() => {
                     mobileMenuOverlay.classList.add('open');
                     mobileMenu.classList.add('open');
                 }, 10);
-                document.body.style.overflow = 'hidden';
             }
 
             function closeMenu() {
                 mobileMenuOverlay.classList.remove('open');
                 mobileMenu.classList.remove('open');
+                
                 setTimeout(() => {
                     mobileMenuContainer.classList.add('hidden');
+                    document.body.style.paddingRight = '';
+                    document.body.style.overflow = '';
                 }, 300);
-                document.body.style.overflow = '';
             }
-
+            
             mobileMenuButton.addEventListener('click', openMenu);
             mobileMenuClose.addEventListener('click', closeMenu);
             mobileMenuOverlay.addEventListener('click', closeMenu);
