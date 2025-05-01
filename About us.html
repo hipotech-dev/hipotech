@@ -5,7 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hipotech - Technology Solutions</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-    <script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#10b981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -16,6 +40,10 @@
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            transition: background-color 0.3s ease;
+        }
+        html {
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         input:focus, button:focus {
             outline: none;
@@ -44,19 +72,19 @@
         }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-white dark:bg-gray-900">
     <!-- Header -->
-    <header class="w-full bg-white shadow-sm fixed top-0 z-50">
+    <header class="w-full bg-white dark:bg-gray-900 shadow-sm fixed top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center">
-                <h1 class="text-2xl font-['Pacifico'] text-primary">Hipotech</h1>
+                <h1 class="text-2xl font-['Pacifico'] text-primary dark:text-blue-400">Hipotech</h1>
                 <nav class="hidden md:flex ml-12">
-                    <a href="Home.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Home</a>
-                    <a href="Our services.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Services</a>
-                    <a href="About us.html" class="text-gray-800 hover:text-primary mx-4 font-medium">About</a>
-                    <a href="Portfolio.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Portfolio</a>
-                    <a href="Blog.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Blog</a>
-                    <a href="Contact.html" class="text-gray-800 hover:text-primary mx-4 font-medium">Contact</a>
+                    <a href="Home.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Home</a>
+                    <a href="Our services.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Services</a>
+                    <a href="About us.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">About</a>
+                    <a href="Portfolio.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Portfolio</a>
+                    <a href="Blog.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Blog</a>
+                    <a href="Contact.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Contact</a>
                 </nav>
             </div>
             <div class="flex items-center">
@@ -67,13 +95,22 @@
                     </button>
                 </a>
                 
+                <!-- Dark Mode Toggle -->
+                <button 
+                    id="dark-mode-toggle"
+                    class="w-10 h-10 flex items-center justify-center ml-4 focus:outline-none"
+                    aria-label="Toggle dark mode"
+                >
+                    <i class="ri-moon-line ri-lg text-gray-700 dark:text-gray-300" id="dark-mode-icon"></i>
+                </button>
+                
                 <!-- Mobile Menu Toggle (Hidden on Desktop) -->
                 <button 
                     id="mobile-menu-button"
                     class="w-10 h-10 flex items-center justify-center md:hidden ml-4 focus:outline-none"
                     aria-label="Toggle menu"
                 >
-                    <i class="ri-menu-line ri-lg text-gray-700"></i>
+                    <i class="ri-menu-line ri-lg text-gray-700 dark:text-gray-300"></i>
                 </button>
             </div>
         </div>
@@ -85,22 +122,22 @@
         <div id="mobile-menu-overlay" class="overlay fixed inset-0 bg-black bg-opacity-50"></div>
         
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50">
-            <div class="flex justify-between items-center p-6 border-b">
-                <h1 class="text-2xl font-['Pacifico'] text-primary">Hipotech</h1>
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white dark:bg-gray-800 shadow-lg z-50">
+            <div class="flex justify-between items-center p-6 border-b dark:border-gray-700">
+                <h1 class="text-2xl font-['Pacifico'] text-primary dark:text-blue-400">Hipotech</h1>
                 <button id="mobile-menu-close" class="w-10 h-10 flex items-center justify-center">
-                    <i class="ri-close-line ri-lg text-gray-700"></i>
+                    <i class="ri-close-line ri-lg text-gray-700 dark:text-gray-300"></i>
                 </button>
             </div>
             <nav class="p-6">
                 <ul class="space-y-4">
-                    <li><a href="Home.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Home</a></li>
-                    <li><a href="Our services.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Services</a></li>
-                    <li><a href="About us.html" class="block py-3 text-gray-800 hover:text-primary font-medium">About</a></li>
-                    <li><a href="Portfolio.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Portfolio</a></li>
-                    <li><a href="Blog.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Blog</a></li>
-                    <li><a href="Contact.html" class="block py-3 text-gray-800 hover:text-primary font-medium">Contact</a></li>
-                    <li class="pt-4 mt-4 border-t">
+                    <li><a href="Home.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Home</a></li>
+                    <li><a href="Our services.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Services</a></li>
+                    <li><a href="About us.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">About</a></li>
+                    <li><a href="Portfolio.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Portfolio</a></li>
+                    <li><a href="Blog.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Blog</a></li>
+                    <li><a href="Contact.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Contact</a></li>
+                    <li class="pt-4 mt-4 border-t dark:border-gray-700">
                         <a href="Get a Quote.html" class="inline-block w-full">
                             <button class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-blue-600 transition w-full text-center">
                                 Get a Quote
@@ -111,194 +148,252 @@
             </nav>
         </div>
     </div>
-<!-- About Section -->
-<section class="py-20">
-    <div class="container mx-auto px-6">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-            <div class="lg:w-1/2">
-                <img src="https://readdy.ai/api/search-image?query=A%20modern%20technology%20office%20with%20people%20working%20on%20computers%2C%20collaborative%20workspace%20with%20blue%20accent%20lighting%2C%20clean%20and%20professional%20environment%2C%20high-quality%20corporate%20photography%2C%20team%20members%20engaged%20in%20technology%20work&width=600&height=500&seq=about1&orientation=landscape" alt="About Hipotech" class="rounded-lg shadow-md object-cover w-full h-full object-top">
-            </div>
-            <div class="lg:w-1/2">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">About Hipotech</h2>
-                <p class="text-gray-600 mb-6">Founded in 2020, Hipotech has quickly established itself as a leader in providing comprehensive technology solutions to businesses of all sizes. Our team of experts brings together decades of experience across various technology disciplines.</p>
-                <p class="text-gray-600 mb-8">We believe in building long-term partnerships with our clients, understanding their unique challenges, and delivering tailored solutions that drive real business value.</p>
-                
-                <div class="grid grid-cols-2 gap-6">
-                    <div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-check-line ri-lg"></i>
-                            </div>
-                            <span class="font-medium">Expert Team</span>
-                        </div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-check-line ri-lg"></i>
-                            </div>
-                            <span class="font-medium">Innovative Solutions</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-check-line ri-lg"></i>
-                            </div>
-                            <span class="font-medium">Client-Focused</span>
-                        </div>
-                        <div class="flex items-center mb-2">
-                            <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
-                                <i class="ri-check-line ri-lg"></i>
-                            </div>
-                            <span class="font-medium">Quality Assurance</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="mt-8 bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-blue-600 transition whitespace-nowrap">Learn More About Us</button>
-            </div>
-        </div>
-    </div>
-</section>
- <!-- Newsletter Section -->
- <section class="py-16 bg-primary">
-    <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 mb-8 md:mb-0">
-                <h2 class="text-2xl font-bold text-white mb-2">Subscribe to Our Newsletter</h2>
-                <p class="text-white/90">Stay updated with the latest technology trends and news.</p>
-            </div>
-            <div class="md:w-1/2">
-                <form class="flex">
-                    <input type="email" class="flex-grow px-4 py-3 rounded-l border-none focus:outline-none" placeholder="Your email address">
-                    <button type="submit" class="bg-white text-primary px-6 py-3 !rounded-r-button font-medium hover:bg-gray-100 transition whitespace-nowrap">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Footer -->
-<footer class="bg-gray-900 text-white pt-16 pb-8">
-    <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            <!-- Company Info -->
-            <div>
-                <h1 class="text-2xl font-['Pacifico'] text-white mb-6">logo</h1>
-                <p class="text-gray-400 mb-6">Providing innovative technology solutions to help businesses thrive in the digital world.</p>
-                <div class="flex">
-                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
-                        <i class="ri-linkedin-fill"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
-                        <i class="ri-twitter-fill"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
-                        <i class="ri-facebook-fill"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
-                        <i class="ri-instagram-fill"></i>
+    <!-- About Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://readdy.ai/api/search-image?query=A%20modern%20technology%20office%20with%20people%20working%20on%20computers%2C%20collaborative%20workspace%20with%20blue%20accent%20lighting%2C%20clean%20and%20professional%20environment%2C%20high-quality%20corporate%20photography%2C%20team%20members%20engaged%20in%20technology%20work&width=600&height=500&seq=about1&orientation=landscape" alt="About Hipotech" class="rounded-lg shadow-md object-cover w-full h-full object-top">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">About Hipotech</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Founded in 2020, Hipotech has quickly established itself as a leader in providing comprehensive technology solutions to businesses of all sizes. Our team of experts brings together decades of experience across various technology disciplines.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-8">We believe in building long-term partnerships with our clients, understanding their unique challenges, and delivering tailored solutions that drive real business value.</p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span class="font-medium dark:text-white">Expert Team</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span class="font-medium dark:text-white">Innovative Solutions</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span class="font-medium dark:text-white">Client-Focused</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span class="font-medium dark:text-white">Quality Assurance</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="About us.html" class="inline-block mt-8">
+                        <button class="bg-primary text-white px-8 py-3 rounded-button font-medium hover:bg-blue-600 transition whitespace-nowrap">
+                            Learn More About Us
+                        </button>
                     </a>
                 </div>
             </div>
-            
-            <!-- Quick Links -->
-            <div>
-                <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
-                <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Services</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
-                </ul>
-            </div>
-            
-            <!-- Services -->
-            <div>
-                <h3 class="text-lg font-semibold mb-6">Our Services</h3>
-                <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Graphic Design</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Web Development</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Mobile App Development</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Data Analytics</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Cybersecurity</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Cloud Solutions</a></li>
-                </ul>
-            </div>
-            
-            <!-- Contact Info -->
-            <div>
-                <h3 class="text-lg font-semibold mb-6">Contact Us</h3>
-                <ul class="space-y-4">
-                    <li class="flex items-start">
-                        <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-1">
-                            <i class="ri-map-pin-line"></i>
-                        </div>
-                        <span class="text-gray-400">1234 Tech Avenue, Suite 500<br>San Francisco, CA 94107</span>
-                    </li>
-                    <li class="flex items-center">
-                        <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3">
-                            <i class="ri-phone-line"></i>
-                        </div>
-                        <span class="text-gray-400">+1 (415) 555-1234</span>
-                    </li>
-                    <li class="flex items-center">
-                        <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3">
-                            <i class="ri-mail-line"></i>
-                        </div>
-                        <span class="text-gray-400">info@hipotech.com</span>
-                    </li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-primary">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-2xl font-bold text-white mb-2">Subscribe to Our Newsletter</h2>
+                    <p class="text-white/90">Stay updated with the latest technology trends and news.</p>
+                </div>
+                <div class="md:w-1/2">
+                    <form action="https://formsubmit.co/your@email.com" method="POST" class="flex">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                        <input type="email" name="email" required class="flex-grow px-4 py-3 rounded-l border-none focus:outline-none dark:bg-gray-800/30 dark:text-white" placeholder="Your email address">
+                        <button type="submit" class="bg-white text-primary px-6 py-3 !rounded-r-button font-medium hover:bg-gray-100 transition whitespace-nowrap">Subscribe</button>
+                    </form>
+                </div>
             </div>
         </div>
-        
-        <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-            <p class="text-gray-400 mb-4 md:mb-0">© 2025 Hipotech. All rights reserved.</p>
-            <div class="flex items-center">
-                <a href="#" class="text-gray-400 hover:text-white transition mr-6">Privacy Policy</a>
-                <a href="#" class="text-gray-400 hover:text-white transition mr-6">Terms of Service</a>
-                <a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <h1 class="text-2xl font-['Pacifico'] text-white mb-6">Hipotech</h1>
+                    <p class="text-gray-400 mb-6">Providing innovative technology solutions to help businesses thrive in the digital world.</p>
+                    <div class="flex">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="Home.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="Our services.html" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="About us.html" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="Portfolio.html" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
+                        <li><a href="Blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="Contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Our Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Graphic Design</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mobile App Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Data Analytics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Cybersecurity</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact Us</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span class="text-gray-400">1234 Tech Avenue, Suite 500<br>San Francisco, CA 94107</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span class="text-gray-400">+1 (415) 555-1234</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <span class="text-gray-400">info@hipotech.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Hipotech. All rights reserved.</p>
+                <div class="flex items-center">
+                    <a href="#" class="text-gray-400 hover:text-white transition mr-6">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition mr-6">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-        const mobileMenuContainer = document.getElementById('mobile-menu-container');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileMenuContainer = document.getElementById('mobile-menu-container');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        function openMenu() {
-            mobileMenuContainer.classList.remove('hidden');
-            setTimeout(() => {
-                mobileMenuOverlay.classList.add('open');
-                mobileMenu.classList.add('open');
-            }, 10);
-            document.body.style.overflow = 'hidden';
-        }
+            function openMenu() {
+                mobileMenuContainer.classList.remove('hidden');
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                document.body.style.paddingRight = `${scrollbarWidth}px`;
+                document.body.style.overflow = 'hidden';
+                
+                setTimeout(() => {
+                    mobileMenuOverlay.classList.add('open');
+                    mobileMenu.classList.add('open');
+                }, 10);
+            }
 
-        function closeMenu() {
-            mobileMenuOverlay.classList.remove('open');
-            mobileMenu.classList.remove('open');
-            setTimeout(() => {
-                mobileMenuContainer.classList.add('hidden');
-            }, 300);
-            document.body.style.overflow = '';
-        }
+            function closeMenu() {
+                mobileMenuOverlay.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                
+                setTimeout(() => {
+                    mobileMenuContainer.classList.add('hidden');
+                    document.body.style.paddingRight = '';
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+            
+            mobileMenuButton.addEventListener('click', openMenu);
+            mobileMenuClose.addEventListener('click', closeMenu);
+            mobileMenuOverlay.addEventListener('click', closeMenu);
 
-        mobileMenuButton.addEventListener('click', openMenu);
-        mobileMenuClose.addEventListener('click', closeMenu);
-        mobileMenuOverlay.addEventListener('click', closeMenu);
+            // Close menu when clicking on a link
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
 
-        // Close menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', closeMenu);
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const darkModeIcon = document.getElementById('dark-mode-icon');
+            
+            // Check for saved user preference or system preference
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            const currentTheme = localStorage.getItem('theme');
+            
+            if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+                document.documentElement.classList.add('dark');
+                darkModeIcon.classList.remove('ri-moon-line');
+                darkModeIcon.classList.add('ri-sun-line');
+            }
+            
+            // Toggle dark mode
+            darkModeToggle.addEventListener('click', function() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                
+                if (isDark) {
+                    darkModeIcon.classList.remove('ri-moon-line');
+                    darkModeIcon.classList.add('ri-sun-line');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    darkModeIcon.classList.remove('ri-sun-line');
+                    darkModeIcon.classList.add('ri-moon-line');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Watch for system theme changes
+            prefersDarkScheme.addListener(e => {
+                if (localStorage.getItem('theme') === null) {
+                    if (e.matches) {
+                        document.documentElement.classList.add('dark');
+                        darkModeIcon.classList.remove('ri-moon-line');
+                        darkModeIcon.classList.add('ri-sun-line');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        darkModeIcon.classList.remove('ri-sun-line');
+                        darkModeIcon.classList.add('ri-moon-line');
+                    }
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
