@@ -44,7 +44,9 @@
             transition: background-color 0.3s ease;
         }
         html {
+            overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
+            width: 100%;
         }
         input:focus, button:focus {
             outline: none;
@@ -71,12 +73,56 @@
             opacity: 1;
             visibility: visible;
         }
+        /* Ensure media doesn't overflow */
+        img, iframe, video, embed {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Break long words if needed */
+        .word-break {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        /* Container constraints */
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 640px) {
+            .container {
+                max-width: 640px;
+            }
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1024px;
+            }
+        }
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1280px;
+            }
+        }
+        @media (min-width: 1536px) {
+            .container {
+                max-width: 1536px;
+            }
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-gray-900">
     <!-- Header -->
     <header class="w-full bg-white dark:bg-gray-900 shadow-sm fixed top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="container px-6 py-4 flex items-center justify-between">
             <div class="flex items-center">
                 <h1 class="text-2xl font-['Pacifico'] text-primary dark:text-blue-400">Hipotech</h1>
                 <nav class="hidden md:flex ml-12">
@@ -153,7 +199,7 @@
     <!-- Hero Section -->
     <section class="relative w-full bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=A%20modern%20technology%20office%20environment%20with%20clean%20workspace%2C%20blue%20accent%20lighting%2C%20and%20a%20gradient%20from%20white%20on%20the%20left%20to%20tech-themed%20visuals%20on%20the%20right.%20The%20left%20side%20has%20ample%20white%20space%20for%20text%20overlay.%20Professional%20atmosphere%20with%20subtle%20tech%20elements%20like%20circuit%20patterns.%20High-quality%20professional%20photography%20style.&width=1920&height=800&seq=hero1&orientation=landscape');">
         <div class="absolute inset-0 bg-gradient-to-r from-white dark:from-gray-900 via-white/90 dark:via-gray-900/90 to-transparent"></div>
-        <div class="container mx-auto px-6 py-24 md:py-32 relative">
+        <div class="container px-6 py-24 md:py-32 relative">
             <div class="w-full md:w-1/2">
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Innovative Technology Solutions for Your Business</h1>
                 <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">We specialize in Graphic Design, Software Development, Data Services, and Cybersecurity to help your business thrive in the digital world.</p>
@@ -175,7 +221,7 @@
 
     <!-- Services Section -->
     <section class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">We offer comprehensive technology solutions tailored to meet your business needs and drive growth.</p>
@@ -247,7 +293,7 @@
 
     <!-- About Section -->
     <section class="py-20">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2">
                     <img src="https://readdy.ai/api/search-image?query=A%20modern%20technology%20office%20with%20people%20working%20on%20computers%2C%20collaborative%20workspace%20with%20blue%20accent%20lighting%2C%20clean%20and%20professional%20environment%2C%20high-quality%20corporate%20photography%2C%20team%20members%20engaged%20in%20technology%20work&width=600&height=500&seq=about1&orientation=landscape" alt="About Hipotech" class="rounded-lg shadow-md object-cover w-full h-full object-top">
@@ -300,7 +346,7 @@
 
     <!-- Stats Section -->
     <section class="py-16 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center">
                     <h3 class="text-4xl font-bold text-primary mb-2">150+</h3>
@@ -324,7 +370,7 @@
 
     <!-- Portfolio Section -->
     <section class="py-20">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Recent Projects</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Take a look at some of our recent work that showcases our expertise and capabilities.</p>
@@ -403,7 +449,7 @@
 
     <!-- Testimonials Section -->
     <section class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">What Our Clients Say</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Don't just take our word for it. Here's what our clients have to say about working with us.</p>
@@ -502,7 +548,7 @@
 
     <!-- CTA Section -->
     <section class="py-20 bg-primary">
-        <div class="container mx-auto px-6 text-center">
+        <div class="container px-6 text-center">
             <h2 class="text-3xl font-bold text-white mb-6">Ready to Transform Your Business?</h2>
             <p class="text-lg text-white/90 max-w-2xl mx-auto mb-10">Let's discuss how our technology solutions can help your business grow, improve efficiency, and stay ahead of the competition.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -514,7 +560,7 @@
 
     <!-- Blog Section -->
     <section class="py-20">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Latest Insights</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Stay updated with the latest trends and insights in technology and business.</p>
@@ -599,7 +645,7 @@
 
     <!-- Contact Section -->
     <section class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="flex flex-col lg:flex-row gap-12">
                 <div class="lg:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Get in Touch</h2>
@@ -719,7 +765,7 @@
 
     <!-- Newsletter Section -->
     <section class="py-16 bg-primary">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-8 md:mb-0">
                     <h2 class="text-2xl font-bold text-white mb-2">Subscribe to Our Newsletter</h2>
@@ -755,7 +801,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <!-- Company Info -->
                 <div>
