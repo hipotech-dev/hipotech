@@ -46,9 +46,12 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             transition: background-color 0.3s ease;
+            width: 100%;
         }
         html {
             transition: background-color 0.3s ease, color 0.3s ease;
+            width: 100%;
+            overflow-x: hidden;
         }
         input:focus, button:focus {
             outline: none;
@@ -75,12 +78,51 @@
             opacity: 1;
             visibility: visible;
         }
+        /* Container fixes */
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 640px) {
+            .container {
+                max-width: 640px;
+            }
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1024px;
+            }
+        }
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1280px;
+            }
+        }
+        /* Ensure media doesn't cause overflow */
+        img, iframe, video, embed {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Break long words if needed */
+        .word-break {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
     </style>
 </head>
 <body class="bg-white dark:bg-gray-900">
     <!-- Header -->
     <header class="w-full bg-white dark:bg-gray-800 shadow-sm fixed top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="container px-6 py-4 flex items-center justify-between">
             <div class="flex items-center">
                 <h1 class="text-2xl font-['Pacifico'] text-primary dark:text-blue-400">Hipotech</h1>
                 <nav class="hidden md:flex ml-12">
@@ -155,8 +197,8 @@
     </div>
 
     <!-- Contact Section -->
-    <section class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="container mx-auto px-6">
+    <section class="py-20 bg-gray-50 dark:bg-gray-800 mt-16">
+        <div class="container px-6">
             <div class="flex flex-col lg:flex-row gap-12">
                 <div class="lg:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Get in Touch</h2>
@@ -276,7 +318,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="container mx-auto px-6">
+        <div class="container px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <!-- Company Info -->
                 <div>
