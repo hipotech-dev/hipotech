@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hipotech - Software Development</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        dark: {
+                            900: '#111827',
+                            800: '#1F2937',
+                            700: '#374151'
+                        }
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scrollbar-gutter: stable;
+            transition: background-color 0.3s ease;
+        }
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        input:focus, button:focus {
+            outline: none;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 640px) {
+            .container {
+                max-width: 640px;
+            }
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1024px;
+            }
+        }
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1280px;
+            }
+        }
+        @media (min-width: 1536px) {
+            .container {
+                max-width: 1536px;
+            }
+        }
+        img, iframe, video, embed {
+            max-width: 100%;
+            height: auto;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .tech-tag {
+            background-color: #EFF6FF;
+            color: #1E40AF;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .dark .tech-tag {
+            background-color: #1E3A8A;
+            color: #DBEAFE;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900">
+    <!-- Header -->
+    <header class="w-full bg-white dark:bg-gray-800 shadow-sm fixed top-0 z-50">
+        <div class="container px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-['Pacifico'] text-primary dark:text-blue-400">Hipotech</h1>
+                <nav class="hidden md:flex ml-12">
+                    <a href="Home.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Home</a>
+                    <a href="Our services.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Services</a>
+                    <a href="About us.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">About</a>
+                    <a href="Portfolio.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Portfolio</a>
+                    <a href="Blog.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Blog</a>
+                    <a href="Contact.html" class="text-gray-800 dark:text-gray-300 hover:text-primary mx-4 font-medium">Contact</a>
+                </nav>
+            </div>
+            <div class="flex items-center">
+                <!-- Dark Mode Toggle -->
+                <button 
+                    id="dark-mode-toggle"
+                    class="w-10 h-10 flex items-center justify-center focus:outline-none"
+                    aria-label="Toggle dark mode"
+                >
+                    <i class="ri-moon-line ri-lg text-gray-700 dark:text-gray-300" id="dark-mode-icon"></i>
+                </button>
+                
+                <!-- Mobile Menu Toggle (Hidden on Desktop) -->
+                <button 
+                    id="mobile-menu-button"
+                    class="w-10 h-10 flex items-center justify-center md:hidden ml-4 focus:outline-none"
+                    aria-label="Toggle menu"
+                >
+                    <i class="ri-menu-line ri-lg text-gray-700 dark:text-gray-300"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 z-50 hidden md:hidden" id="mobile-menu-container">
+        <!-- Overlay -->
+        <div id="mobile-menu-overlay" class="overlay fixed inset-0 bg-black bg-opacity-50"></div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white dark:bg-gray-800 shadow-lg z-50">
+            <div class="flex justify-between items-center p-6 border-b dark:border-gray-700">
+                <h1 class="text-2xl font-['Pacifico'] text-primary dark:text-blue-400">Hipotech</h1>
+                <button id="mobile-menu-close" class="w-10 h-10 flex items-center justify-center">
+                    <i class="ri-close-line ri-lg text-gray-700 dark:text-gray-300"></i>
+                </button>
+            </div>
+            <nav class="p-6">
+                <ul class="space-y-4">
+                    <li><a href="Home.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Home</a></li>
+                    <li><a href="Our services.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Services</a></li>
+                    <li><a href="About us.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">About</a></li>
+                    <li><a href="Portfolio.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Portfolio</a></li>
+                    <li><a href="Blog.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Blog</a></li>
+                    <li><a href="Contact.html" class="block py-3 text-gray-800 dark:text-gray-300 hover:text-primary font-medium">Contact</a></li>
+                    <li class="pt-4 mt-4 border-t dark:border-gray-700">
+                        <a href="Get a Quote.html" class="inline-block w-full">
+                            <button class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-blue-600 transition w-full text-center">
+                                Get a Quote
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Software Development Section -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800 mt-16">
+        <div class="container px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Software Development</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">We build custom software solutions tailored to your business needs, from web applications to mobile apps and enterprise systems.</p>
+            </div>
+            
+            <!-- Development Services -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <!-- Web Development -->
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition service-card">
+                    <div class="w-14 h-14 flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 rounded-full mb-6">
+                        <i class="ri-window-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Web Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Custom web applications, e-commerce solutions, and responsive websites built with modern technologies.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                </div>
+                
+                <!-- Mobile Development -->
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition service-card">
+                    <div class="w-14 h-14 flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 rounded-full mb-6">
+                        <i class="ri-smartphone-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Mobile Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Cross-platform mobile applications for iOS and Android with native performance.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Swift</span>
+                    </div>
+                </div>
+                
+                <!-- Backend Development -->
+                <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-sm hover:shadow-md transition service-card">
+                    <div class="w-14 h-14 flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 rounded-full mb-6">
+                        <i class="ri-server-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-3">Backend Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Scalable server-side solutions, APIs, and database architecture for your applications.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project Showcase -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Projects</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Explore some of our recent software development projects and success stories.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Project 1 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="E-commerce Platform" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">ShopSphere</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Custom e-commerce platform with inventory management and payment integration.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm text-primary font-medium">Web Application</span>
+                            <a href="#" class="text-primary hover:text-blue-600 transition flex items-center">
+                                View Case Study <i class="ri-arrow-right-line ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm" data-category="mobile">
+                    <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Fitness App" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">FitTrack Pro</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Mobile fitness application with workout tracking and nutrition planning.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Dart</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm text-primary font-medium">Mobile App</span>
+                            <a href="#" class="text-primary hover:text-blue-600 transition flex items-center">
+                                View Case Study <i class="ri-arrow-right-line ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Analytics Dashboard" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">DataInsight</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Business intelligence dashboard with real-time analytics and reporting.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm text-primary font-medium">Web Application</span>
+                            <a href="#" class="text-primary hover:text-blue-600 transition flex items-center">
+                                View Case Study <i class="ri-arrow-right-line ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm" data-category="mobile">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Banking App" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">SecureBank</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Mobile banking application with biometric authentication and transaction features.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm text-primary font-medium">Mobile App</span>
+                            <a href="#" class="text-primary hover:text-blue-600 transition flex items-center">
+                                View Case Study <i class="ri-arrow-right-line ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm" data-category="backend">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="API Platform" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">API Gateway</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Enterprise API platform with authentication, rate limiting, and analytics.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Go</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm text-primary font-medium">Backend System</span>
+                            <a href="#" class="text-primary hover:text-blue-600 transition flex items-center">
+                                View Case Study <i class="ri-arrow-right-line ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-sm" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="CMS Platform" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">ContentHub</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Custom content management system with multi-site support and workflow automation.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">.NET Core</span>
+                            <span class="tech-tag">SQL Server</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-sm text-primary font-medium">Web Application</span>
+                            <a href="#" class="text-primary hover:text-blue-600 transition flex items-center">
+                                View Case Study <i class="ri-arrow-right-line ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Development Process -->
+            <div class="mt-20">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Development Process</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">We follow an agile methodology to deliver high-quality software on time and within budget.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 rounded-full mb-4">
+                            <span class="text-primary font-bold">1</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Discovery</h3>
+                        <p class="text-gray-600 dark:text-gray-300">We analyze your requirements and define project scope.</p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 rounded-full mb-4">
+                            <span class="text-primary font-bold">2</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Design</h3>
+                        <p class="text-gray-600 dark:text-gray-300">We create wireframes, prototypes, and system architecture.</p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 rounded-full mb-4">
+                            <span class="text-primary font-bold">3</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Development</h3>
+                        <p class="text-gray-600 dark:text-gray-300">We build your solution with regular progress updates.</p>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-sm">
+                        <div class="w-12 h-12 flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 rounded-full mb-4">
+                            <span class="text-primary font-bold">4</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Deployment</h3>
+                        <p class="text-gray-600 dark:text-gray-300">We launch your product and provide ongoing support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-primary dark:bg-blue-800">
+        <div class="container px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-2xl font-bold text-white mb-2">Subscribe to Our Newsletter</h2>
+                    <p class="text-white/90">Stay updated with the latest technology trends and development insights.</p>
+                </div>
+                <div class="md:w-1/2">
+                    <form class="flex">
+                        <input type="email" class="flex-grow px-4 py-3 rounded-l border-none focus:outline-none dark:bg-gray-700 dark:text-white" placeholder="Your email address">
+                        <button type="submit" class="bg-white dark:bg-gray-100 text-primary dark:text-blue-800 px-6 py-3 !rounded-r-button font-medium hover:bg-gray-100 dark:hover:bg-gray-200 transition whitespace-nowrap">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <h1 class="text-2xl font-['Pacifico'] text-white mb-6">Hipotech</h1>
+                    <p class="text-gray-400 mb-6">Providing innovative technology solutions to help businesses thrive in the digital world.</p>
+                    <div class="flex">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full mr-3 hover:bg-gray-700 transition">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="Home.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="Our services.html" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="About us.html" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="Portfolio.html" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
+                        <li><a href="Blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="Contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Our Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mobile Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Backend Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">UI/UX Design</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Cloud Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">DevOps</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact Us</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3 mt-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span class="text-gray-400">Dar es salaam, Tanzania<br>41, Magomeni,Kanisani</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span class="text-gray-400">+2556 2804 9497</span>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-3">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <span class="text-gray-400">hipoalexander@yahoo.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Hipotech. All rights reserved.</p>
+                <div class="flex items-center">
+                    <a href="#" class="text-gray-400 hover:text-white transition mr-6">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition mr-6">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileMenuContainer = document.getElementById('mobile-menu-container');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function openMenu() {
+                mobileMenuContainer.classList.remove('hidden');
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                document.body.style.paddingRight = `${scrollbarWidth}px`;
+                document.body.style.overflow = 'hidden';
+                
+                setTimeout(() => {
+                    mobileMenuOverlay.classList.add('open');
+                    mobileMenu.classList.add('open');
+                }, 10);
+            }
+
+            function closeMenu() {
+                mobileMenuOverlay.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                
+                setTimeout(() => {
+                    mobileMenuContainer.classList.add('hidden');
+                    document.body.style.paddingRight = '';
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+            
+            mobileMenuButton.addEventListener('click', openMenu);
+            mobileMenuClose.addEventListener('click', closeMenu);
+            mobileMenuOverlay.addEventListener('click', closeMenu);
+
+            // Close menu when clicking on a link
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const darkModeIcon = document.getElementById('dark-mode-icon');
+            
+            // Check for saved user preference or system preference
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            const currentTheme = localStorage.getItem('theme');
+            
+            if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+                document.documentElement.classList.add('dark');
+                darkModeIcon.classList.remove('ri-moon-line');
+                darkModeIcon.classList.add('ri-sun-line');
+            }
+            
+            // Toggle dark mode
+            darkModeToggle.addEventListener('click', function() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                
+                if (isDark) {
+                    darkModeIcon.classList.remove('ri-moon-line');
+                    darkModeIcon.classList.add('ri-sun-line');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    darkModeIcon.classList.remove('ri-sun-line');
+                    darkModeIcon.classList.add('ri-moon-line');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Watch for system theme changes
+            prefersDarkScheme.addListener(e => {
+                if (localStorage.getItem('theme') === null) {
+                    if (e.matches) {
+                        document.documentElement.classList.add('dark');
+                        darkModeIcon.classList.remove('ri-moon-line');
+                        darkModeIcon.classList.add('ri-sun-line');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        darkModeIcon.classList.remove('ri-sun-line');
+                        darkModeIcon.classList.add('ri-moon-line');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
