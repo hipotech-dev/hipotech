@@ -440,7 +440,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -529,104 +529,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1MB in bytes
-            const fileUpload = document.getElementById('file-upload');
-            const fileInfo = document.getElementById('file-info');
-            const fileName = document.getElementById('file-name');
-            const fileSize = document.getElementById('file-size');
-            const progressBarFill = document.getElementById('progress-bar-fill');
-            const fileError = document.getElementById('file-error');
-            const submitBtn = document.getElementById('submit-btn');
-            const submitMessage = document.getElementById('submit-message');
-            
-            // File upload handling
-            fileUpload.addEventListener('change', function(e) {
-                const files = e.target.files;
-                if (files.length > 0) {
-                    const file = files[0];
-                    
-                    // Check file size
-                    if (file.size > MAX_FILE_SIZE) {
-                        fileError.textContent = 'File size exceeds 1MB limit';
-                        fileError.classList.remove('hidden');
-                        fileInfo.classList.add('hidden');
-                        fileUpload.value = ''; // Clear the file input
-                        return;
-                    }
-                    
-                    // Display file info
-                    fileName.textContent = file.name;
-                    fileSize.textContent = formatFileSize(file.size);
-                    fileInfo.classList.remove('hidden');
-                    fileError.classList.add('hidden');
-                    
-                    // Simulate upload progress (in a real app, you'd use XMLHttpRequest or Fetch API)
-                    simulateUploadProgress();
-                } else {
-                    fileInfo.classList.add('hidden');
-                }
-            });
-            
-            // Format file size
-            function formatFileSize(bytes) {
-                if (bytes < 1024) return bytes + ' bytes';
-                else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-                else return (bytes / 1048576).toFixed(1) + ' MB';
-            }
-            
-            // Simulate upload progress (for demo purposes)
-            function simulateUploadProgress() {
-                let progress = 0;
-                const interval = setInterval(() => {
-                    progress += Math.random() * 10;
-                    if (progress >= 100) {
-                        progress = 100;
-                        clearInterval(interval);
-                    }
-                    progressBarFill.style.width = progress + '%';
-                }, 200);
-            }
-            
-            // Form submission handler
-            document.querySelector('form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Show loading state
-                submitBtn.disabled = true;
-                submitMessage.style.display = 'block';
-                
-                // Validate file size again before submission
-                if (fileUpload.files.length > 0 && fileUpload.files[0].size > MAX_FILE_SIZE) {
-                    fileError.textContent = 'File size exceeds 1MB limit';
-                    fileError.classList.remove('hidden');
-                    submitBtn.disabled = false;
-                    submitMessage.style.display = 'none';
-                    return;
-                }
-                
-                const formData = new FormData(this);
-                
-                fetch(this.action, {
-                    method: 'POST',
-                    body: formData
-                }).then(response => {
-                    submitBtn.disabled = false;
-                    submitMessage.style.display = 'none';
-                    
-                    if(response.ok) {
-                        window.location.href = this.querySelector('[name="_next"]').value;
-                    } else {
-                        // Show error message if submission fails
-                        submitMessage.innerHTML = '<span class="text-red-600 dark:text-red-400">Submission failed. Please try again.</span>';
-                        submitMessage.style.display = 'block';
-                    }
-                }).catch(error => {
-                    submitBtn.disabled = false;
-                    submitMessage.innerHTML = '<span class="text-red-600 dark:text-red-400">Network error. Please check your connection.</span>';
-                    submitMessage.style.display = 'block';
-                });
-            });
-
             // Mobile menu functionality
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenuClose = document.getElementById('mobile-menu-close');
@@ -636,22 +538,27 @@
 
             function openMenu() {
                 mobileMenuContainer.classList.remove('hidden');
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                document.body.style.paddingRight = `${scrollbarWidth}px`;
+                document.body.style.overflow = 'hidden';
+                
                 setTimeout(() => {
                     mobileMenuOverlay.classList.add('open');
                     mobileMenu.classList.add('open');
                 }, 10);
-                document.body.style.overflow = 'hidden';
             }
 
             function closeMenu() {
                 mobileMenuOverlay.classList.remove('open');
                 mobileMenu.classList.remove('open');
+                
                 setTimeout(() => {
                     mobileMenuContainer.classList.add('hidden');
+                    document.body.style.paddingRight = '';
+                    document.body.style.overflow = '';
                 }, 300);
-                document.body.style.overflow = '';
             }
-
+            
             mobileMenuButton.addEventListener('click', openMenu);
             mobileMenuClose.addEventListener('click', closeMenu);
             mobileMenuOverlay.addEventListener('click', closeMenu);
