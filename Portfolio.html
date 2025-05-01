@@ -419,16 +419,6 @@
                 link.addEventListener('click', closeMenu);
             });
 
-            // Filter button functionality
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    // Here you would add filtering logic for the portfolio items
-                });
-            });
-
             // Dark mode toggle functionality
             const darkModeToggle = document.getElementById('dark-mode-toggle');
             const darkModeIcon = document.getElementById('dark-mode-icon');
