@@ -269,7 +269,7 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section class="py-16 bg-primary dark:bg-blue-800">
+    <section class="py-16 bg-primary">
         <div class="container px-6">
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-8 md:mb-0">
@@ -277,9 +277,25 @@
                     <p class="text-white/90">Stay updated with the latest technology trends and news.</p>
                 </div>
                 <div class="md:w-1/2">
-                    <form class="flex">
-                        <input type="email" class="flex-grow px-4 py-3 rounded-l border-none focus:outline-none dark:bg-gray-700 dark:text-white" placeholder="Your email address">
-                        <button type="submit" class="bg-white dark:bg-gray-100 text-primary dark:text-blue-800 px-6 py-3 !rounded-r-button font-medium hover:bg-gray-100 dark:hover:bg-gray-200 transition whitespace-nowrap">
+                    <form action="https://formsubmit.co/hipoalexander@yahoo.com" method="POST" class="flex">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Newsletter Subscription">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://hipotech-dev.github.io/hipotech/thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="text" name="_honey" style="display:none"> <!-- Honeypot -->
+                        
+                        <input 
+                            type="email" 
+                            name="email" 
+                            required
+                            class="flex-grow px-4 py-3 rounded-l border-none focus:outline-none focus:ring-2 focus:ring-white/20 dark:bg-gray-800/30 dark:text-white" 
+                            placeholder="Your email address"
+                        >
+                        <button 
+                            type="submit" 
+                            class="bg-white text-primary px-6 py-3 !rounded-r-button font-medium hover:bg-gray-100 transition whitespace-nowrap"
+                        >
                             Subscribe
                         </button>
                     </form>
@@ -288,7 +304,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+ <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
